@@ -87,4 +87,18 @@ public class EyuellBookTest extends TestCase {
         testBook.deleteRecipe(0);
         assertEquals("Mocha", testBook.deleteRecipe(0));
     }
+
+    public void testOnRecipeEditing(){
+        testBook.addRecipe(r1);
+        testBook.editRecipe(0,r2);
+        String oldTxt = r1.getName();
+        assertFalse(oldTxt.equals(r1.getName()));
+        //assertNotEquals(oldTxt,r1.getName());
+    }
+
+    public void testOnNonExistingRecipeEditing(){
+        testBook.editRecipe(0,r1);
+        String oldTxt = r1.getName();
+        assertNull(r1.getName());
+    }
 }
