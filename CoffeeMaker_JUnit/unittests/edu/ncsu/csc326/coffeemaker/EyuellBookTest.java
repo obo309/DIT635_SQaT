@@ -81,11 +81,12 @@ public class EyuellBookTest extends TestCase {
         assertNull(testBook.deleteRecipe(0));
     }
 
-    public void testOnMovingRecipesAfterDeletion(){
+    public void testRecipeBook_CheckListAfterDeletion(){
         testBook.addRecipe(r1);
         testBook.addRecipe(r2);
         testBook.deleteRecipe(0);
-        assertEquals("Mocha", testBook.deleteRecipe(0));
+        String rName = r2.getName();
+        assertEquals(rName, testBook.deleteRecipe(0));
     }
 
     public void testOnRecipeEditing(){
