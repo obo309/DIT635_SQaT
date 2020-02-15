@@ -4,7 +4,6 @@ import junit.framework.TestCase;
 
 public class EyuellBookTest extends TestCase {
     private RecipeBook testBook;
-    private int bookSize = 3;
 
     private Recipe r1;
     private Recipe r2;
@@ -54,6 +53,7 @@ public class EyuellBookTest extends TestCase {
     }
 
     public void testBook_Size(){
+        int bookSize = 3;
         assertEquals(bookSize, testBook.getRecipes().length);
     }
 
