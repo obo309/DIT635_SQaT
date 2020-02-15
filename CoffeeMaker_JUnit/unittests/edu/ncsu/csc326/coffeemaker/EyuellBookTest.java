@@ -56,25 +56,35 @@ public class EyuellBookTest extends TestCase {
         assertEquals(3, testBook.getRecipes().length);
     }
 
-    public void testAddingSameNamedRecipe(){
+    public void testAddingARecipe(){
         assertTrue(testBook.addRecipe(r1));
+    }
+
+    public void testAddingSameNamedRecipe(){
+        testBook.addRecipe(r1);
         assertFalse(testBook.addRecipe(r1));
     }
 
     public void testAddingMoreThanThreeRecipe(){
-        assertTrue(testBook.addRecipe(r1));
-        assertTrue(testBook.addRecipe(r2));
-        assertTrue(testBook.addRecipe(r3));
+        testBook.addRecipe(r1);
+        testBook.addRecipe(r2);
+        testBook.addRecipe(r3);
         assertFalse(testBook.addRecipe(r4));
     }
 
     public void testDeleting(){
         testBook.addRecipe(r1);
         assertEquals("Coffee", testBook.deleteRecipe(0));
+    }
+
+    public void testDeletingNonExisting(){
         assertNull(testBook.deleteRecipe(0));
     }
 
-    public void testDeletingNonExistingRecipe(){
-        assertNull(testBook.deleteRecipe(0));
+    public void testOnMovingRecipesAfterDeletion(){
+        testBook.addRecipe(r1);
+        testBook.addRecipe(r2);
+        testBook.deleteRecipe(0);
+        assertEquals("Mocha", testBook.deleteRecipe(0));
     }
 }
