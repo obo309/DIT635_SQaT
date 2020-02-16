@@ -61,7 +61,7 @@ public class CoffeeMakerTest extends TestCase {
 	
 	public void testAddInventory() {
 		try {
-			cm.addInventory("4","7","0","9");
+			cm.addInventory("4","-7","0","9");
 		} catch (InventoryException e) {
 			fail("InventoryException should not be thrown");
 		}

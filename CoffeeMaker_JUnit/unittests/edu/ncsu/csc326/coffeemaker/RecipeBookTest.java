@@ -10,8 +10,6 @@ public class RecipeBookTest extends TestCase {
     private Recipe r2;
     private Recipe r3;
     private Recipe r4;
-    private Recipe r5;
-    private Recipe r1nr2;
 
     protected void setUp() throws Exception {
 
@@ -55,62 +53,49 @@ public class RecipeBookTest extends TestCase {
         r4.setAmtSugar("1");
         r4.setPrice("65");
 
-        //Set up for r5
-        r5 = new Recipe();
-        r5.setName("Lumumba");
-        r5.setAmtChocolate("6");
-        r5.setAmtCoffee("0");
-        r5.setAmtMilk("12");
-        r5.setAmtSugar("11");
-        r5.setPrice("5");
-
-        //Set up for r1nr2
-        r1nr2 = new Recipe();
-        r1nr2.setName("Coffee");
-        r1nr2.setAmtChocolate("0");
-        r1nr2.setAmtCoffee("3");
-        r1nr2.setAmtMilk("1");
-        r1nr2.setAmtSugar("1");
-        r1nr2.setPrice("50");
-
         super.setUp();
     }
 
-    public void testRecipeBook_AddRecipe(){
+    public void testRecipeBook_checkSize(){
+        assertEquals(3, rb.getRecipes().length);
+    }
+
+    public void testRecipeBook_addRecipe(){
         rb.addRecipe(r1);
         Recipe firstRecipe = rb.getRecipes()[0];
         String name = firstRecipe.getName();
         assertEquals("Coffee", name);
     }
 
-    public void testRecipeBook_AddRecipe_FullRecipeBook(){
+    public void testRecipeBook_addRecipe_fullRecipeBook(){
         rb.addRecipe(r1);
         rb.addRecipe(r2);
         rb.addRecipe(r3);
-        rb.addRecipe(r4);
-        assertFalse("false", rb.addRecipe(r5));
+        assertFalse("Should not be able to add more then 3 recipes", rb.addRecipe(r4));
     }
 
-    public void testRecipeBook_AddRecipe_AlreadyExisting(){
+    public void testRecipeBook_addRecipe_alreadyExisting(){
         rb.addRecipe(r1);
-        assertFalse("false", rb.addRecipe(r1nr2));
+        assertFalse("false", rb.addRecipe(r1));
     }
 
-    public void testRecipeBook_DeleteRecipe(){
+    public void testRecipeBook_deleteRecipe(){
         rb.addRecipe(r1);
         assertEquals("Coffee", rb.deleteRecipe(0));
+        assertNull("There shouldn't be a recipe in the book", rb.getRecipes());
     }
 
-    public void testRecipeBook_DeleteRecipe_NoneExisting(){
-        assertEquals(null, rb.deleteRecipe(0));
+    public void testRecipeBook_deleteRecipe_noneExisting(){
+        assertNull(rb.deleteRecipe(0));
     }
 
-    public void testRecipeBook_EditRecipe(){
+    public void testRecipeBook_editRecipe(){
         rb.addRecipe(r1);
-        assertEquals("Coffee", rb.editRecipe(0, r1nr2));
+        String newName = r2.getName();
+        assertEquals(newName, rb.editRecipe(0, r2));
     }
 
-    public void testRecipeBook_EditRecipe_NoneExisting(){
-        assertEquals(null, rb.editRecipe(0, r1nr2));
+    public void testRecipeBook_editRecipe_noneExisting(){
+        assertNull(rb.editRecipe(0, r1));
     }
 }
