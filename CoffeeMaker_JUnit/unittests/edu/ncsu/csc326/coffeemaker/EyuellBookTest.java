@@ -52,32 +52,33 @@ public class EyuellBookTest extends TestCase {
         super.setUp();
     }
 
-    public void testBookSize(){
-        assertEquals(3, testBook.getRecipes().length);
+    public void testBook_Size(){
+        int bookSize = 3;
+        assertEquals(bookSize, testBook.getRecipes().length);
     }
 
-    public void testAddingARecipe(){
+    public void testRecipeBook_AddRecipe(){
         assertTrue(testBook.addRecipe(r1));
     }
 
-    public void testAddingSameNamedRecipe(){
+    public void testRecipeBook_AddRecipe_AlreadyExisting(){
         testBook.addRecipe(r1);
         assertFalse(testBook.addRecipe(r1));
     }
 
-    public void testAddingMoreThanThreeRecipe(){
+    public void testRecipeBook_AddRecipe_FullRecipeBook(){
         testBook.addRecipe(r1);
         testBook.addRecipe(r2);
         testBook.addRecipe(r3);
         assertFalse(testBook.addRecipe(r4));
     }
 
-    public void testDeleting(){
+    public void testRecipeBook_DeleteRecipe(){
         testBook.addRecipe(r1);
         assertEquals("Coffee", testBook.deleteRecipe(0));
     }
 
-    public void testDeletingNonExisting(){
+    public void testRecipeBook_DeleteRecipe_NoneExisting(){
         assertNull(testBook.deleteRecipe(0));
     }
 
@@ -89,7 +90,7 @@ public class EyuellBookTest extends TestCase {
         assertEquals(rName, testBook.deleteRecipe(0));
     }
 
-    public void testOnRecipeEditing(){
+    public void testRecipeBook_EditRecipe(){
         testBook.addRecipe(r1);
         testBook.editRecipe(0,r2);
         String oldTxt = r1.getName();
@@ -97,7 +98,7 @@ public class EyuellBookTest extends TestCase {
         //assertNotEquals(oldTxt,r1.getName());
     }
 
-    public void testOnNonExistingRecipeEditing(){
+    public void testRecipeBook_EditRecipe_NoneExisting(){
         testBook.editRecipe(0,r1);
         String oldTxt = r1.getName();
         assertNull(r1.getName());
