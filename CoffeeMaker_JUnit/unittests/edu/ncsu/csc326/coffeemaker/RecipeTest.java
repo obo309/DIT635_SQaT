@@ -186,17 +186,11 @@ public class RecipeTest extends TestCase {
     }
 
     public void testRecipe_setPrice_negativeInput() throws RecipeException{
-        /*try {
+        try {
             r1.setPrice("-20");
             fail("RecipeException: You can't have a negative price!");
         } catch (RecipeException e){
             //Success
-        }*/
-
-        try {
-            r1.setPrice("-20");
-        } catch (RecipeException e){
-            fail("RecipeException: You can't have a negative price!");
         }
     }
 }
